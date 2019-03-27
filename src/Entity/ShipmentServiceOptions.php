@@ -190,7 +190,7 @@ class ShipmentServiceOptions implements NodeInterface
             $node->appendChild($document->createElement('ImportControlIndicator'));
         }
         
-        if ($this->isReturnOfDocumentIndicator) {
+        if ($this->returnOfDocumentIndicator) {
             $node->appendChild($document->createElement('ReturnOfDocumentIndicator'));
         }
 
