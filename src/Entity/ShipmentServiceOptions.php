@@ -82,6 +82,11 @@ class ShipmentServiceOptions implements NodeInterface
      * @var DeliveryConfirmation
      */
     private $deliveryConfirmation;
+    
+    /**
+     * @var
+     */
+    private $returnOfDocumentIndicator;
 
     /**
      * @param null $response
@@ -129,6 +134,9 @@ class ShipmentServiceOptions implements NodeInterface
             }
             if (isset($response->EMailMessage)) {
                 $this->setEMailMessage(new EMailMessage($response->EMailMessage));
+            }
+            if (isset($response->ReturnOfDocumentIndicator)) {
+                $this->setReturnOfDocumentIndicator($response->ReturnOfDocumentIndicator);
             }
         }
     }
@@ -180,6 +188,10 @@ class ShipmentServiceOptions implements NodeInterface
 
         if (isset($this->importControlIndicator)) {
             $node->appendChild($document->createElement('ImportControlIndicator'));
+        }
+        
+        if ($this->isReturnOfDocumentIndicator) {
+            $node->appendChild($document->createElement('ReturnOfDocumentIndicator'));
         }
 
         if (isset($this->labelMethod)) {
@@ -470,5 +482,15 @@ class ShipmentServiceOptions implements NodeInterface
     {
         $this->DeliverToAddresseeOnlyIndicator = $DeliverToAddresseeOnlyIndicator;
         return $this;
+    }
+    
+    public function setReturnOfDocumentIndicator($returnOfDocumentIndicator)
+    {
+        $this->returnOfDocumentIndicator = $returnOfDocumentIndicator;
+    }
+    
+    public function isReturnOfDocumentIndicator()
+    {
+        return $this->returnOfDocumentIndicator;
     }
 }
