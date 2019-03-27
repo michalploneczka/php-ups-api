@@ -126,6 +126,10 @@ class Shipping extends Ups
         $request->appendChild($xml->createElement('RequestAction', 'ShipConfirm'));
         $request->appendChild($xml->createElement('RequestOption', $validation ?: 'nonvalidate'));
 
+        if ($shipment->getRestrictedArticlesType()) {
+            $request->appendChild($xml->createElement('RestrictedArticlesType', $shipment->getRestrictedArticlesType()));
+        }
+        
         // Page 47
         $shipmentNode = $container->appendChild($xml->createElement('Shipment'));
 

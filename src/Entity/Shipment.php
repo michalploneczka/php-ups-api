@@ -119,6 +119,11 @@ class Shipment
      */
     private $deliveryTimeInformation;
 
+    /**
+     * @var string
+     */
+    private $restrictedArticlesType;
+
     public function __construct()
     {
         $this->setShipper(new Shipper());
@@ -589,5 +594,23 @@ class Shipment
     public function setShipmentTotalWeight(ShipmentTotalWeight $shipmentTotalWeight)
     {
         $this->shipmentTotalWeight = $shipmentTotalWeight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRestrictedArticlesType()
+    {
+        return $this->restrictedArticlesType;
+    }
+
+    /**
+     * @param string $restrictedArticlesType
+     * @return Shipment
+     */
+    public function setRestrictedArticlesType($restrictedArticlesType)
+    {
+        $this->restrictedArticlesType = $restrictedArticlesType;
+        return $this;
     }
 }
